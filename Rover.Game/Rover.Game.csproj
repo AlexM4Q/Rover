@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E23C2296-0F31-412A-9A1C-848FAACC0BEE}</ProjectGuid>
+    <ProjectGuid>{8642EF99-F907-464E-88F5-BB38D22D8A40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rover.Multiplayer.Core</RootNamespace>
-    <AssemblyName>Rover.Multiplayer.Core</AssemblyName>
+    <RootNamespace>Rover.Game</RootNamespace>
+    <AssemblyName>Rover.Game</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,37 +32,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection\ClientConnection.cs" />
-    <Compile Include="Connection\RemoteConnection.cs" />
-    <Compile Include="Connection\Status.cs" />
-    <Compile Include="Connection\TcpConnection.cs" />
-    <Compile Include="Models\Messages\MessageBase.cs" />
+    <Compile Include="Entities\Hero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Rover.Multiplayer.Client\Rover.Multiplayer.Client.csproj">
+      <Project>{d1e1f7fd-bc06-4d51-9e57-4c6dc5284e01}</Project>
+      <Name>Rover.Multiplayer.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Multiplayer.Core\Rover.Multiplayer.Core.csproj">
+      <Project>{e23c2296-0f31-412a-9a1c-848faacc0bee}</Project>
+      <Name>Rover.Multiplayer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Multiplayer.Server\Rover.Multiplayer.Server.csproj">
+      <Project>{eef14ba6-5cd2-4d85-9be0-f5194dae44a6}</Project>
+      <Name>Rover.Multiplayer.Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rover.Platform.Logic\Rover.Platform.Logic.csproj">
       <Project>{00c4f3c1-fd36-4be2-a8ab-ad0c7f59678f}</Project>
       <Name>Rover.Platform.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rover.Platform.View\Rover.Platform.View.csproj">
+      <Project>{3c3e4145-1ac7-415a-aac4-e2212bad609f}</Project>
+      <Name>Rover.Platform.View</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
 </Project>

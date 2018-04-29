@@ -11,18 +11,11 @@ namespace Rover.Multiplayer.Client {
     public class RoverClient : ClientConnection {
 
         /// <summary>
-        /// Действие при получении сообщения с изображением экрана
-        /// </summary>
-        public Action<MessageBase> OnProcessScreenMessage { get; set; }
-
-        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="adress">IP сервера</param>
         /// <param name="tcpPort">потр TCP клиента</param>
-        /// <param name="udpReceivePort">порт UDP приема</param>
-        /// <param name="udpSendPort">порт UDP отправки</param>
-        public RoverClient(string adress, int tcpPort, int udpReceivePort, int udpSendPort) : base(new TcpClient(), udpReceivePort, udpSendPort) {
+        public RoverClient(string adress, int tcpPort) : base(new TcpClient()) {
             TcpClient.Connect(adress, tcpPort);
             Status = Status.Connected;
 
@@ -30,11 +23,6 @@ namespace Rover.Multiplayer.Client {
         }
 
         protected override void OnTcpMessageReceived(MessageBase message) {
-            switch (message) {
-                case MessageBase processScreenMessage:
-                    OnProcessScreenMessage?.Invoke(processScreenMessage);
-                    break;
-            }
         }
 
     }

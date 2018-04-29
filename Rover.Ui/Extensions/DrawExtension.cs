@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Rover.Platform.Entities.Data;
+using Rover.Platform.View.Data;
 
 namespace Rover.Ui.Extensions {
 

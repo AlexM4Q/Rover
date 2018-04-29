@@ -4,19 +4,19 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 
-namespace Rover.Platform.Entities.Data {
+namespace Rover.Platform.View.Data {
 
     public class DrawableBytes {
 
-        public static readonly IReadOnlyList<int> SupportedBpp = new List<int> {8, 24, 32};
+        public static readonly IReadOnlyList<int> SupportedBpp = new[] {8, 24, 32};
 
-        public byte[] Bytes { get; set; }
+        public readonly byte[] Bytes;
 
-        public int Width { get; set; }
+        public readonly int Width;
 
-        public int Height { get; set; }
+        public readonly int Height;
 
-        public int Bpp { get; set; }
+        public readonly int Bpp;
 
         public readonly int ColorComponentsCount;
 

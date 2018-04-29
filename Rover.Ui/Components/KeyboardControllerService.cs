@@ -1,17 +1,19 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
-using Rover.Platform.Entities.Controller;
-using Vector = Rover.Platform.Entities.Data.Vector;
+using Rover.Platform.Logic.Entities.Base;
+using Rover.Platform.Logic.Services;
+using Vector = Rover.Platform.Logic.Data.Vector;
 
 namespace Rover.Ui.Components {
 
-    public class KeyboardController : IController {
+    public class KeyboardControllerService : IControllerService {
 
-        public IControllable Controllable { get; set; }
+        public IMoveable Moveable { get; set; }
 
-        public void Update() {
+        public void Update(IReadOnlyCollection<IEntity> entities) {
             Application.Current.Dispatcher.Invoke(() => {
-                if (Controllable == null) return;
+                if (Moveable == null) return;
 
                 var direction = new Vector();
                 if (Keyboard.IsKeyDown(Key.A)) {
@@ -26,7 +28,7 @@ namespace Rover.Ui.Components {
                     direction.Y = 1;
                 }
 
-                Controllable.Move(direction);
+                Moveable.Move(direction);
             });
         }
 

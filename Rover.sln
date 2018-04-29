@@ -5,13 +5,17 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Ui", "Rover.Ui\Rover.Ui.csproj", "{60B0AF87-0719-488B-BBDF-33D47C917081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Platform", "Rover.Platform\Rover.Platform.csproj", "{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Multiplayer.Server", "Rover.Multiplayer.Server\Rover.Multiplayer.Server.csproj", "{EEF14BA6-5CD2-4D85-9BE0-F5194DAE44A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Multiplayer.Client", "Rover.Multiplayer.Client\Rover.Multiplayer.Client.csproj", "{D1E1F7FD-BC06-4D51-9E57-4C6DC5284E01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Multiplayer.Core", "Rover.Multiplayer.Core\Rover.Multiplayer.Core.csproj", "{E23C2296-0F31-412A-9A1C-848FAACC0BEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Platform.Logic", "Rover.Platform.Logic\Rover.Platform.Logic.csproj", "{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Platform.View", "Rover.Platform.View\Rover.Platform.View.csproj", "{3C3E4145-1AC7-415A-AAC4-E2212BAD609F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rover.Game", "Rover.Game\Rover.Game.csproj", "{8642EF99-F907-464E-88F5-BB38D22D8A40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +27,6 @@ Global
 		{60B0AF87-0719-488B-BBDF-33D47C917081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60B0AF87-0719-488B-BBDF-33D47C917081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60B0AF87-0719-488B-BBDF-33D47C917081}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEF14BA6-5CD2-4D85-9BE0-F5194DAE44A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEF14BA6-5CD2-4D85-9BE0-F5194DAE44A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEF14BA6-5CD2-4D85-9BE0-F5194DAE44A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +39,18 @@ Global
 		{E23C2296-0F31-412A-9A1C-848FAACC0BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E23C2296-0F31-412A-9A1C-848FAACC0BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E23C2296-0F31-412A-9A1C-848FAACC0BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C3E4145-1AC7-415A-AAC4-E2212BAD609F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C3E4145-1AC7-415A-AAC4-E2212BAD609F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C3E4145-1AC7-415A-AAC4-E2212BAD609F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C3E4145-1AC7-415A-AAC4-E2212BAD609F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8642EF99-F907-464E-88F5-BB38D22D8A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8642EF99-F907-464E-88F5-BB38D22D8A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8642EF99-F907-464E-88F5-BB38D22D8A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8642EF99-F907-464E-88F5-BB38D22D8A40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace Rover.Platform.Entities.Data {
+﻿namespace Rover.Platform.Logic.Data {
 
     public class Vector {
 

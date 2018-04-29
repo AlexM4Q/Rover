@@ -19,20 +19,18 @@ namespace Rover.Multiplayer.Core.Connection {
         /// </summary>
         protected Status Status { get; set; }
 
-        public TcpClient TcpClient => TcpConnection.TcpClient;
+        protected TcpClient TcpClient => TcpConnection.TcpClient;
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="client">TCP клиент</param>
-        /// <param name="udpReceivePort">порт UDP приема</param>
-        /// <param name="udpSendPort">порт UDP отправки</param>
-        protected ClientConnection(TcpClient client, int udpReceivePort, int udpSendPort) {
+        protected ClientConnection(TcpClient client) {
             TcpConnection = new TcpConnection(client) {
                 OnMessage = OnTcpMessageReceived,
                 GetStatus = () => Status
             };
-        }   
+        }
 
         /// <summary>
         /// Запуск соединений

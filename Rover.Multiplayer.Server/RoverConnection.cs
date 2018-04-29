@@ -7,20 +7,13 @@ namespace Rover.Multiplayer.Server {
 
     public class RoverConnection : ClientConnection {
 
-        public Action OnProcessesListRequest { get; set; }
-
-        public RoverConnection(TcpClient client, int udpReceivePort, int udpSendPort) : base(client, udpReceivePort, udpSendPort) {
+        public RoverConnection(TcpClient client) : base(client) {
             Status = Status.Connected;
 
             Start();
         }
 
         protected override void OnTcpMessageReceived(MessageBase message) {
-            switch (message) {
-                case MessageBase _:
-                    OnProcessesListRequest?.Invoke();
-                    break;
-            }
         }
 
     }

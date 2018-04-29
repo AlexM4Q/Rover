@@ -9,26 +9,20 @@ namespace Rover.Multiplayer.Server {
 
         private readonly IList<RoverConnection> _connections;
 
+        public IReadOnlyList<RoverConnection> Connections => _connections as IReadOnlyList<RoverConnection>;
+
         private readonly int _tcpPort;
-
-        private readonly int _udpReceivePort;
-
-        private readonly int _udpSendPort;
 
         private TcpListener _tcpListener;
 
         private bool _isStarted;
 
-        public IReadOnlyList<RoverConnection> Connections => _connections as IReadOnlyList<RoverConnection>;
-
         public Action<RoverConnection> OnClientConnected { get; set; }
 
-        public RoverServer(int tcpPort, int udpReceivePort, int udpSendPort) {
+        public RoverServer(int tcpPort) {
             _connections = new List<RoverConnection>();
 
             _tcpPort = tcpPort;
-            _udpReceivePort = udpReceivePort;
-            _udpSendPort = udpSendPort;
         }
 
         public void Start() {
@@ -55,7 +49,7 @@ namespace Rover.Multiplayer.Server {
 
         private void ConnectionHandler(IAsyncResult ar) {
             lock (_connections) {
-                var connection = new RoverConnection(_tcpListener.EndAcceptTcpClient(ar), _udpReceivePort, _udpSendPort);
+                var connection = new RoverConnection(_tcpListener.EndAcceptTcpClient(ar));
                 _connections.Add(connection);
                 OnClientConnected?.Invoke(connection);
             }

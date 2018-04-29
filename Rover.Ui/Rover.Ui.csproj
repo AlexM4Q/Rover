@@ -62,7 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\KeyboardController.cs" />
+    <Compile Include="Components\KeyboardControllerService.cs" />
     <Compile Include="Extensions\DrawExtension.cs" />
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
@@ -96,9 +96,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Rover.Platform\Rover.Platform.csproj">
-      <Project>{E9BE9AF7-2C7B-4318-B7D0-0E069354E06B}</Project>
-      <Name>Rover.Platform</Name>
+    <ProjectReference Include="..\Rover.Game\Rover.Game.csproj">
+      <Project>{8642ef99-f907-464e-88f5-bb38d22d8a40}</Project>
+      <Name>Rover.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Multiplayer.Client\Rover.Multiplayer.Client.csproj">
+      <Project>{d1e1f7fd-bc06-4d51-9e57-4c6dc5284e01}</Project>
+      <Name>Rover.Multiplayer.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Multiplayer.Server\Rover.Multiplayer.Server.csproj">
+      <Project>{eef14ba6-5cd2-4d85-9be0-f5194dae44a6}</Project>
+      <Name>Rover.Multiplayer.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Platform.Logic\Rover.Platform.Logic.csproj">
+      <Project>{00c4f3c1-fd36-4be2-a8ab-ad0c7f59678f}</Project>
+      <Name>Rover.Platform.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rover.Platform.View\Rover.Platform.View.csproj">
+      <Project>{3c3e4145-1ac7-415a-aac4-e2212bad609f}</Project>
+      <Name>Rover.Platform.View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
