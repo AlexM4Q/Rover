@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rover.Platform.Logic")]
+[assembly: AssemblyTitle("Rover.Platform")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rover.Platform.Logic")]
+[assembly: AssemblyProduct("Rover.Platform")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F")]
+[assembly: Guid("BCF9308E-03C2-4ED0-ACBA-E4F16B082C48")]
 
 // Version information for an assembly consists of the following four values:
 //

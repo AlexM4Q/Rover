@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using Rover.Multiplayer.Core.Connection;
 using Rover.Multiplayer.Core.Models.Messages;
 
 namespace Rover.Multiplayer.Server {
 
-    public class RoverConnection : ClientConnection {
+    public sealed class RoverConnection : ClientConnection {
 
         public RoverConnection(TcpClient client) : base(client) {
             Status = Status.Connected;
@@ -14,6 +13,11 @@ namespace Rover.Multiplayer.Server {
         }
 
         protected override void OnTcpMessageReceived(MessageBase message) {
+            switch (message) {
+                case MoveMessage moveMessage:
+                    ServerContext.Instance.OnMoveMessage(moveMessage);
+                    break;
+            }
         }
 
     }

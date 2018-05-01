@@ -1,6 +1,6 @@
-﻿using Rover.Platform.View.Data;
+﻿using Rover.Platform.Data;
 
-namespace Rover.Platform.View.Entities {
+namespace Rover.Platform.Entities.Base {
 
     /// <summary>
     /// Базовый интерфейс чего-то рисовабельного

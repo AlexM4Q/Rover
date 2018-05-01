@@ -1,6 +1,6 @@
-﻿using Rover.Platform.Logic.Entities.Base;
+﻿using Rover.Platform.Entities.Base;
 
-namespace Rover.Platform.Logic.Services {
+namespace Rover.Platform.Services {
 
     public interface IControllerService : IService {
 

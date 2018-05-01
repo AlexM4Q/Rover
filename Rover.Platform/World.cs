@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
-using Rover.Platform.Logic.Entities.Base;
-using Rover.Platform.Logic.Services;
+using Rover.Platform.Entities.Base;
+using Rover.Platform.Services;
 
-namespace Rover.Platform.Logic {
+namespace Rover.Platform {
 
     public class World {
 
@@ -28,7 +29,7 @@ namespace Rover.Platform.Logic {
             _process = new Thread(() => {
                 while (_status == Status.Working) {
                     Services.ForEach(e => e.Update(Entities));
-                    OnUpdate();
+                    OnUpdate?.Invoke();
 
                     Thread.Sleep(UpdateDelay);
                 }
@@ -43,6 +44,8 @@ namespace Rover.Platform.Logic {
         public void Stop() {
             _status = Status.Stopped;
         }
+
+        public T GetService<T>() where T : IService => (T) Services.FirstOrDefault(s => s is T);
 
         private enum Status {
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
-using ProtoBuf;
 using Rover.Multiplayer.Core.Models.Messages;
 
 namespace Rover.Multiplayer.Core.Connection {
@@ -53,7 +53,7 @@ namespace Rover.Multiplayer.Core.Connection {
             while (Connected) {
                 if (TcpClient.Available > 0) {
                     try {
-                        OnMessage(Serializer.DeserializeWithLengthPrefix<MessageBase>(TcpClient.GetStream(), PrefixStyle.Fixed32));
+                        OnMessage(new BinaryFormatter().Deserialize(TcpClient.GetStream()) as MessageBase);
                     } catch (Exception e) {
                         Debug.WriteLine(e);
                     }
@@ -72,7 +72,7 @@ namespace Rover.Multiplayer.Core.Connection {
                     var message = MessagesQueue[0];
 
                     try {
-                        Serializer.SerializeWithLengthPrefix(TcpClient.GetStream(), message, PrefixStyle.Fixed32);
+                        new BinaryFormatter().Serialize(TcpClient.GetStream(), message);
                     } catch (Exception e) {
                         Debug.WriteLine(e);
                     } finally {

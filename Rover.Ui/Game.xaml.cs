@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Windows;
-using Rover.Game.Entities;
-using Rover.Platform.Logic;
-using Rover.Platform.Logic.Entities;
-using Rover.Platform.View.Services;
+using Rover.Multiplayer.Client;
 using Rover.Ui.Components;
 using Rover.Ui.Extensions;
 
 namespace Rover.Ui {
 
     public partial class MainWindow {
-
-        private World _world;
 
         public MainWindow() {
             InitializeComponent();
@@ -20,21 +15,27 @@ namespace Rover.Ui {
         protected override void OnInitialized(EventArgs e) {
             base.OnInitialized(e);
 
-            var hero = new Hero();
+//            var hero = new Hero();
+//
+//            var drawerService = new DrawerService();
+//            drawerService.Init((int) Width, (int) Height);
+//
+//            var contrllerService = new KeyboardControllerService {Moveable = hero};
+//
+//            var world = new World {
+//                OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource())
+//            };
+//
+//            world.Services.Add(drawerService);
+//            world.Services.Add(contrllerService);
+//            world.Entities.Add(hero);
+//            world.Start();
 
-            var drawerService = new DrawerService();
-            drawerService.Init((int) Width, (int) Height);
-
-            var contrllerService = new KeyboardControllerService {Moveable = hero};
-
-            _world = new World {
-                OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource())
+            var contrllerService = new KeyboardControllerService();
+            
+            var client = new RoverClient("localhost", 12321) {
+                OnMapMessage = message => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = message.DrawableBytes.ToBitmapSource())
             };
-
-            _world.Services.Add(drawerService);
-            _world.Services.Add(contrllerService);
-            _world.Entities.Add(hero);
-            _world.Start();
         }
 
     }

@@ -35,14 +35,14 @@ namespace Rover.Multiplayer.Core.Connection {
         /// <summary>
         /// Запуск соединений
         /// </summary>
-        protected void Start() {
+        protected virtual void Start() {
             TcpConnection.Start();
         }
 
         /// <summary>
         /// Завершение соединений
         /// </summary>
-        public void Dispose() {
+        public virtual void Dispose() {
             Status = Status.Disconnected;
             TcpConnection.Dispose();
         }

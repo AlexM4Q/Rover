@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Hero.cs" />
+    <Compile Include="GameContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +56,9 @@
       <Project>{eef14ba6-5cd2-4d85-9be0-f5194dae44a6}</Project>
       <Name>Rover.Multiplayer.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rover.Platform.Logic\Rover.Platform.Logic.csproj">
-      <Project>{00c4f3c1-fd36-4be2-a8ab-ad0c7f59678f}</Project>
-      <Name>Rover.Platform.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rover.Platform.View\Rover.Platform.View.csproj">
-      <Project>{3c3e4145-1ac7-415a-aac4-e2212bad609f}</Project>
-      <Name>Rover.Platform.View</Name>
+    <ProjectReference Include="..\Rover.Platform\Rover.Platform.csproj">
+      <Project>{BCF9308E-03C2-4ED0-ACBA-E4F16B082C48}</Project>
+      <Name>Rover.Platform</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -50,9 +50,9 @@
       <Project>{E23C2296-0F31-412A-9A1C-848FAACC0BEE}</Project>
       <Name>Rover.Multiplayer.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rover.Platform.Logic\Rover.Platform.Logic.csproj">
-      <Project>{00C4F3C1-FD36-4BE2-A8AB-AD0C7F59678F}</Project>
-      <Name>Rover.Platform.Logic</Name>
+    <ProjectReference Include="..\Rover.Platform\Rover.Platform.csproj">
+      <Project>{BCF9308E-03C2-4ED0-ACBA-E4F16B082C48}</Project>
+      <Name>Rover.Platform</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

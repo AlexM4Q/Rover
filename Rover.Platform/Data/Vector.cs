@@ -1,5 +1,8 @@
-﻿namespace Rover.Platform.Logic.Data {
+﻿using System;
 
+namespace Rover.Platform.Data {
+
+    [Serializable]
     public class Vector {
 
         public double X { get; set; }

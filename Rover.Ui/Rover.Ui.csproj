@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rover.Multiplayer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\Rover.Multiplayer.Server.Dedicated\bin\Debug\Rover.Multiplayer.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -104,17 +107,17 @@
       <Project>{d1e1f7fd-bc06-4d51-9e57-4c6dc5284e01}</Project>
       <Name>Rover.Multiplayer.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rover.Multiplayer.Core\Rover.Multiplayer.Core.csproj">
+      <Project>{E23C2296-0F31-412A-9A1C-848FAACC0BEE}</Project>
+      <Name>Rover.Multiplayer.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rover.Multiplayer.Server\Rover.Multiplayer.Server.csproj">
       <Project>{eef14ba6-5cd2-4d85-9be0-f5194dae44a6}</Project>
       <Name>Rover.Multiplayer.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Rover.Platform.Logic\Rover.Platform.Logic.csproj">
-      <Project>{00c4f3c1-fd36-4be2-a8ab-ad0c7f59678f}</Project>
-      <Name>Rover.Platform.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rover.Platform.View\Rover.Platform.View.csproj">
-      <Project>{3c3e4145-1ac7-415a-aac4-e2212bad609f}</Project>
-      <Name>Rover.Platform.View</Name>
+    <ProjectReference Include="..\Rover.Platform\Rover.Platform.csproj">
+      <Project>{BCF9308E-03C2-4ED0-ACBA-E4F16B082C48}</Project>
+      <Name>Rover.Platform</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

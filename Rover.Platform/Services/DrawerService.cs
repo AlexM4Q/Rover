@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Rover.Platform.Logic.Entities.Base;
-using Rover.Platform.Logic.Services;
-using Rover.Platform.View.Data;
-using Rover.Platform.View.Entities;
+using Rover.Platform.Data;
+using Rover.Platform.Entities.Base;
 
-namespace Rover.Platform.View.Services {
+namespace Rover.Platform.Services {
 
     public class DrawerService : IService {
 
@@ -15,7 +12,7 @@ namespace Rover.Platform.View.Services {
             DrawableBytes = new DrawableBytes(widht, height);
         }
 
-        public void Update(IReadOnlyCollection<IEntity> entities) {
+        public void Update(IEnumerable<IEntity> entities) {
             foreach (var entity in entities) {
                 if (entity is IDrawable drawable) {
                     drawable.Draw(DrawableBytes);

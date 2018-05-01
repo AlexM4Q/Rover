@@ -1,8 +1,7 @@
 ﻿using System.Drawing;
-using Rover.Platform.Logic.Data;
-using Rover.Platform.Logic.Entities;
-using Rover.Platform.View.Data;
-using Rover.Platform.View.Entities;
+using Rover.Platform.Data;
+using Rover.Platform.Entities;
+using Rover.Platform.Entities.Base;
 
 namespace Rover.Game.Entities {
 

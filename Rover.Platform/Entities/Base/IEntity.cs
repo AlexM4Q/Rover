@@ -1,7 +1,7 @@
 ﻿using System;
-using Rover.Platform.Logic.Data;
+using Rover.Platform.Data;
 
-namespace Rover.Platform.Logic.Entities.Base {
+namespace Rover.Platform.Entities.Base {
 
     /// <summary>
     /// Базовый интерфейс сущности

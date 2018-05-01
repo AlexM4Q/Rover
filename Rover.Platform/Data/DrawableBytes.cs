@@ -4,8 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 
-namespace Rover.Platform.View.Data {
+namespace Rover.Platform.Data {
 
+    [Serializable]
     public class DrawableBytes {
 
         public static readonly IReadOnlyList<int> SupportedBpp = new[] {8, 24, 32};

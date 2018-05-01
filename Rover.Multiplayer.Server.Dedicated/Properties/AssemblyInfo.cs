@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Rover.Platform.View")]
+[assembly: AssemblyTitle("Rover.Multiplayer.Server.Dedicated")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Rover.Platform.View")]
+[assembly: AssemblyProduct("Rover.Multiplayer.Server.Dedicated")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3C3E4145-1AC7-415A-AAC4-E2212BAD609F")]
+[assembly: Guid("A9EAF8D1-AFEB-4A50-AA67-5CDC12866C29")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using Rover.Platform.Logic.Entities.Base;
-using Rover.Platform.Logic.Services;
-using Vector = Rover.Platform.Logic.Data.Vector;
+using Rover.Platform.Entities.Base;
+using Rover.Platform.Services;
+using Vector = Rover.Platform.Data.Vector;
 
 namespace Rover.Ui.Components {
 
@@ -11,7 +11,7 @@ namespace Rover.Ui.Components {
 
         public IMoveable Moveable { get; set; }
 
-        public void Update(IReadOnlyCollection<IEntity> entities) {
+        public void Update(IEnumerable<IEntity> entities) {
             Application.Current.Dispatcher.Invoke(() => {
                 if (Moveable == null) return;
 

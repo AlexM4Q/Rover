@@ -1,7 +1,7 @@
-﻿using Rover.Platform.Logic.Data;
-using Rover.Platform.Logic.Entities.Base;
+﻿using Rover.Platform.Data;
+using Rover.Platform.Entities.Base;
 
-namespace Rover.Platform.Logic.Entities {
+namespace Rover.Platform.Entities {
 
     /// <summary>
     /// Базовый класс подвижной сущности
