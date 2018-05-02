@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Rover.Platform.Entities.Base;
 using Rover.Platform.Services;
+using Rover.Platform.Services.Base;
 using Vector = Rover.Platform.Data.Vector;
 
 namespace Rover.Ui.Components {
@@ -10,6 +11,8 @@ namespace Rover.Ui.Components {
     public class KeyboardControllerService : IControllerService {
 
         public IMoveable Moveable { get; set; }
+
+        private Vector _previous;
 
         public void Update(IEnumerable<IEntity> entities) {
             Application.Current.Dispatcher.Invoke(() => {
@@ -28,7 +31,9 @@ namespace Rover.Ui.Components {
                     direction.Y = 1;
                 }
 
-                Moveable.Move(direction);
+                if (direction.Equals(_previous)) return;
+
+                Moveable.Direction = _previous = direction;
             });
         }
 

@@ -45,8 +45,8 @@ namespace Rover.Multiplayer.Core.Connection {
         /// Конструктор
         /// </summary>
         protected RemoteConnection() {
-            ReceivingThread = new Thread(Receiving) {IsBackground = true};
-            SendingThread = new Thread(Sending) {IsBackground = true};
+            ReceivingThread = new Thread(Receiving);
+            SendingThread = new Thread(Sending);
         }
 
         /// <summary>

@@ -27,8 +27,15 @@ namespace Rover.Platform.Entities {
         /// <summary>
         /// Конструктор
         /// </summary>
-        protected Entity() {
-            Id = Guid.NewGuid();
+        protected Entity() : this(Guid.NewGuid()) {
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        protected Entity(Guid id) {
+            Id = id;
             Size = new Vector();
             Position = new Vector();
         }

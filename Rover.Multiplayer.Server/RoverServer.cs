@@ -9,7 +9,7 @@ namespace Rover.Multiplayer.Server {
 
         private readonly IList<RoverConnection> _connections;
 
-        public IReadOnlyList<RoverConnection> Connections => _connections as IReadOnlyList<RoverConnection>;
+        public IEnumerable<RoverConnection> Connections => _connections as IReadOnlyList<RoverConnection>;
 
         private readonly int _tcpPort;
 

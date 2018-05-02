@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using Rover.Multiplayer.Client;
+using Rover.Platform.Adapters;
 using Rover.Ui.Components;
 using Rover.Ui.Extensions;
 
@@ -12,9 +14,7 @@ namespace Rover.Ui {
             InitializeComponent();
         }
 
-        protected override void OnInitialized(EventArgs e) {
-            base.OnInitialized(e);
-
+        private void OnLoaded(object sender, RoutedEventArgs e) {
 //            var hero = new Hero();
 //
 //            var drawerService = new DrawerService();
@@ -31,11 +31,11 @@ namespace Rover.Ui {
 //            world.Entities.Add(hero);
 //            world.Start();
 
-            var contrllerService = new KeyboardControllerService();
-            
             var client = new RoverClient("localhost", 12321) {
                 OnMapMessage = message => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = message.DrawableBytes.ToBitmapSource())
             };
+
+            client.ControllerService = new KeyboardControllerService {Moveable = new MoveAdapter(client.Move)};
         }
 
     }

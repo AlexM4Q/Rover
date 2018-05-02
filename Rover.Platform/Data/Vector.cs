@@ -15,6 +15,19 @@ namespace Rover.Platform.Data {
         }
 
         public static Vector operator +(Vector v1, Vector v2) => new Vector(v1.X + v2.X, v1.Y + v2.Y);
+        public static Vector operator -(Vector v1, Vector v2) => new Vector(v1.X - v2.X, v1.Y - v2.Y);
+        public static Vector operator *(Vector v1, Vector v2) => new Vector(v1.X * v2.X, v1.Y * v2.Y);
+        public static Vector operator /(Vector v1, Vector v2) => new Vector(v1.X / v2.X, v1.Y / v2.Y);
+
+        public override bool Equals(object obj) {
+            return obj is Vector other && X.Equals(other.X) && Y.Equals(other.Y);
+        }
+
+        public override int GetHashCode() {
+            unchecked {
+                return (X.GetHashCode() * 397) ^ Y.GetHashCode();
+            }
+        }
 
     }
 

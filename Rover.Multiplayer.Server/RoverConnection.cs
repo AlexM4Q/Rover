@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using Rover.Multiplayer.Core.Connection;
 using Rover.Multiplayer.Core.Models.Messages;
+using Rover.Platform.Entities;
 
 namespace Rover.Multiplayer.Server {
 
@@ -14,6 +15,9 @@ namespace Rover.Multiplayer.Server {
 
         protected override void OnTcpMessageReceived(MessageBase message) {
             switch (message) {
+                case RegisterHeroMessage registerHeroMessage:
+                    ServerContext.Instance.OnRegisterHeroMessage(registerHeroMessage);
+                    break;
                 case MoveMessage moveMessage:
                     ServerContext.Instance.OnMoveMessage(moveMessage);
                     break;

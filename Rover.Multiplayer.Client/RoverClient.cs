@@ -4,24 +4,30 @@ using System.Threading;
 using Rover.Multiplayer.Core.Connection;
 using Rover.Multiplayer.Core.Models.Messages;
 using Rover.Platform.Data;
-using Rover.Platform.Entities.Base;
+using Rover.Platform.Entities;
 using Rover.Platform.Services;
+using Rover.Platform.Services.Base;
 
 namespace Rover.Multiplayer.Client {
 
     /// <summary>
     /// Клиент
     /// </summary>
-    public sealed class RoverClient : ClientConnection, IMoveable {
+    public sealed class RoverClient : ClientConnection {
 
-        public IControllerService ControllerService { get; set; }
-
-        public Action<MapMessage> OnMapMessage { get; set; }
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
+        private readonly Hero _hero;
 
         /// <summary>
         /// Поток отправки сообщений
         /// </summary>
         private readonly Thread _gameThread;
+
+        public IControllerService ControllerService { get; set; }
+
+        public Action<MapMessage> OnMapMessage { get; set; }
 
         /// <summary>
         /// Конструктор
@@ -32,9 +38,10 @@ namespace Rover.Multiplayer.Client {
             TcpClient.Connect(adress, tcpPort);
             Status = Status.Connected;
 
+            _hero = new Hero(Guid.NewGuid());
             _gameThread = new Thread(() => {
                 while (Status == Status.Connected) {
-                    ControllerService.Update();
+                    ControllerService?.Update();
                 }
             });
 
@@ -45,6 +52,18 @@ namespace Rover.Multiplayer.Client {
             base.Start();
 
             _gameThread.Start();
+
+            SendViaTcp(new RegisterHeroMessage {
+                EntityId = _hero.Id,
+                Velocity = _hero.Velocity
+            });
+        }
+
+        public void Move(Vector direction) {
+            SendViaTcp(new MoveMessage {
+                EntityId = _hero.Id,
+                Direction = direction
+            });
         }
 
         protected override void OnTcpMessageReceived(MessageBase message) {
@@ -53,10 +72,6 @@ namespace Rover.Multiplayer.Client {
                     OnMapMessage?.Invoke(mapMessage);
                     break;
             }
-        }
-
-        public void Move(Vector direction) {
-            SendViaTcp(new MoveMessage {Direction = direction});
         }
 
     }

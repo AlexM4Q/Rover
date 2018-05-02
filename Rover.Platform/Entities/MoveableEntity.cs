@@ -1,4 +1,5 @@
-﻿using Rover.Platform.Data;
+﻿using System;
+using Rover.Platform.Data;
 using Rover.Platform.Entities.Base;
 
 namespace Rover.Platform.Entities {
@@ -11,9 +12,21 @@ namespace Rover.Platform.Entities {
         /// <summary>
         /// Скорость
         /// </summary>
-        public Vector Velocity { get; protected set; }
+        public Vector Velocity { get; set; }
 
-        public abstract void Move(Vector direction);
+        /// <summary>
+        /// Направление
+        /// </summary>
+        public Vector Direction { get; set; }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        protected MoveableEntity(Guid id) : base(id) {
+        }
+
+        public abstract void Move();
 
     }
 

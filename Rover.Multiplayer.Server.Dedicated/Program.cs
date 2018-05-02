@@ -2,7 +2,9 @@
 
     internal static class Program {
 
-        public static void Main() => ServerContext.Instance.Start();
+        public static void Main() {
+            ServerContext.Instance.Start();
+        }
 
     }
 

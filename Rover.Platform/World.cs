@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Rover.Platform.Entities.Base;
 using Rover.Platform.Services;
+using Rover.Platform.Services.Base;
 
 namespace Rover.Platform {
 
@@ -33,7 +34,7 @@ namespace Rover.Platform {
 
                     Thread.Sleep(UpdateDelay);
                 }
-            }) {IsBackground = true};
+            });
         }
 
         public void Start() {

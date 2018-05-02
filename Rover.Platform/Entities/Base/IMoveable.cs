@@ -7,7 +7,10 @@ namespace Rover.Platform.Entities.Base {
     /// </summary>
     public interface IMoveable {
 
-        void Move(Vector direction);
+        /// <summary>
+        /// Направление
+        /// </summary>
+        Vector Direction { get; set; }
 
     }
 

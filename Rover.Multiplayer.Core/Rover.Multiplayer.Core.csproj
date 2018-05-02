@@ -50,6 +50,8 @@
     <Compile Include="Models\Messages\MapMessage.cs" />
     <Compile Include="Models\Messages\MessageBase.cs" />
     <Compile Include="Models\Messages\MoveMessage.cs" />
+    <Compile Include="Models\Messages\RegisterEntityMessage.cs" />
+    <Compile Include="Models\Messages\RegisterHeroMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
