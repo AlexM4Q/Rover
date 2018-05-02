@@ -3,7 +3,6 @@ using System.Linq;
 using Rover.Multiplayer.Core.Models.Messages;
 using Rover.Platform;
 using Rover.Platform.Entities;
-using Rover.Platform.Entities.Base;
 using Rover.Platform.Services;
 
 namespace Rover.Multiplayer.Server {

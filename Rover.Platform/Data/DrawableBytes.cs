@@ -43,6 +43,12 @@ namespace Rover.Platform.Data {
             }
         }
 
+        public void SetAll(byte value = 0) {
+            for (var i = 0; i < Bytes.Length; i++) {
+                Bytes[i] = value;
+            }
+        }
+
         public Color GetPixel(int x, int y) {
             var i = GetIndex(x, y);
 
@@ -136,6 +142,8 @@ namespace Rover.Platform.Data {
                     throw new ArgumentException(nameof(band));
             }
         }
+
+        public bool Contains(int x, int y) => 0 <= x && x <= Width && 0 <= y && y < Height;
 
         private int GetIndex(int x, int y) {
             var index = (y * Width + x) * ColorComponentsCount;

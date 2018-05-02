@@ -36,7 +36,7 @@ namespace Rover.Platform.Entities {
         /// <param name="id">Идентификатор</param>
         protected Entity(Guid id) {
             Id = id;
-            Size = new Vector();
+            Size = new Vector(5, 5);
             Position = new Vector();
         }
 

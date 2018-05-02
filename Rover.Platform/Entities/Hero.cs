@@ -10,13 +10,25 @@ namespace Rover.Platform.Entities {
         /// <summary>
         /// Конструктор
         /// </summary>
+        public Hero() : this(Guid.NewGuid()) {
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         /// <param name="id">Идентификатор</param>
         public Hero(Guid id) : base(id) {
             Velocity = new Vector(1, 1);
         }
 
         public void Draw(DrawableBytes drawableBytes) {
-            drawableBytes.SetPixel((int) Position.X, (int) Position.Y, Color.White);
+            for (var x = (int) Position.X; x < (int) Position.X + (int) Size.X; x++) {
+                for (var y = (int) Position.Y; y < (int) Position.Y + (int) Size.Y; y++) {
+                    if (drawableBytes.Contains(x, y)) {
+                        drawableBytes.SetPixel(x, y, Color.Red);
+                    }
+                }
+            }
         }
 
         public override void Move() {
