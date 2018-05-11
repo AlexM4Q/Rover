@@ -15,9 +15,24 @@ namespace Rover.Platform.Entities {
         public Vector Velocity { get; set; }
 
         /// <summary>
-        /// Направление
+        /// Направление в вращении
         /// </summary>
-        public Vector Direction { get; set; }
+        public Vector Angular { get; set; }
+
+        private Vector _direction;
+
+        /// <summary>
+        /// Направление в движении
+        /// </summary>
+        public Vector Direction {
+            get => _direction;
+            set {
+                _direction = value;
+                if (Math.Abs(value.X) > 0 || Math.Abs(value.Y) > 0) {
+                    Angular = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Конструктор
@@ -32,9 +47,12 @@ namespace Rover.Platform.Entities {
         protected MoveableEntity(Guid id) : base(id) {
             Velocity = new Vector();
             Direction = new Vector();
+            Angular = new Vector(1, 0);
         }
 
-        public abstract void Move();
+        public override void Update() {
+            Position += Velocity * Direction;
+        }
 
     }
 

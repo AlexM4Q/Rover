@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Rover.Platform.Entities.Base;
-using Rover.Platform.Services;
 using Rover.Platform.Services.Base;
 
 namespace Rover.Platform {
 
     public class World {
+
+        private static World _instance;
+
+        public static World Instance => _instance ?? (_instance = new World());
 
         public readonly List<IService> Services;
 
@@ -22,7 +25,7 @@ namespace Rover.Platform {
 
         private Status _status;
 
-        public World() {
+        private World() {
             Services = new List<IService>();
             Entities = new List<IEntity>();
 

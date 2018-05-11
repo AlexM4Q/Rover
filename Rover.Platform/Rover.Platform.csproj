@@ -42,9 +42,11 @@
     <Compile Include="Adapters\MoveAdapter.cs" />
     <Compile Include="Data\DrawableBytes.cs" />
     <Compile Include="Data\Vector.cs" />
+    <Compile Include="Entities\Base\IControllable.cs" />
     <Compile Include="Entities\Base\IDrawable.cs" />
     <Compile Include="Entities\Base\IEntity.cs" />
     <Compile Include="Entities\Base\IMoveable.cs" />
+    <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Hero.cs" />
     <Compile Include="Entities\MoveableEntity.cs" />
@@ -52,7 +54,7 @@
     <Compile Include="Services\Base\IControllerService.cs" />
     <Compile Include="Services\Base\IService.cs" />
     <Compile Include="Services\DrawerService.cs" />
-    <Compile Include="Services\HeroService.cs" />
+    <Compile Include="Services\UpdaterService.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

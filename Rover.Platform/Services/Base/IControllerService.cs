@@ -4,7 +4,7 @@ namespace Rover.Platform.Services.Base {
 
     public interface IControllerService : IService {
 
-        IMoveable Moveable { get; set; }
+        IControllable Controllable { get; set; }
 
     }
 

@@ -18,10 +18,9 @@ namespace Rover.Multiplayer.Server {
         public readonly RoverServer Server;
 
         public ServerContext() {
-            World = new World {
-                OnUpdate = Update
-            };
-            World.Services.Add(new HeroService());
+            World = World.Instance;
+            World.OnUpdate = Update;
+            World.Services.Add(new MoverService());
             World.Services.Add(new DrawerService(500, 500));
 
             Server = new RoverServer(12321);

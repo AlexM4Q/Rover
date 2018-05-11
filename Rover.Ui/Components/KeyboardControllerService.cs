@@ -10,13 +10,13 @@ namespace Rover.Ui.Components {
 
     public class KeyboardControllerService : IControllerService {
 
-        public IMoveable Moveable { get; set; }
+        public IControllable Controllable { get; set; }
 
         private Vector _previous;
 
         public void Update(IEnumerable<IEntity> entities) {
             Application.Current.Dispatcher.Invoke(() => {
-                if (Moveable == null) return;
+                if (Controllable == null) return;
 
                 var direction = new Vector();
                 if (Keyboard.IsKeyDown(Key.A)) {
@@ -31,9 +31,13 @@ namespace Rover.Ui.Components {
                     direction.Y = 1;
                 }
 
-                if (direction.Equals(_previous)) return;
+                if (!direction.Equals(_previous)) {
+                    Controllable.Direction = _previous = direction;
+                }
 
-                Moveable.Direction = _previous = direction;
+                if (Keyboard.IsKeyDown(Key.Space)) {
+                    Controllable.Fire();
+                }
             });
         }
 

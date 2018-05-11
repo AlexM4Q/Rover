@@ -23,6 +23,11 @@ namespace Rover.Platform.Entities.Base {
         /// </summary>
         Vector Position { get; }
 
+        /// <summary>
+        /// Обновление
+        /// </summary>
+        void Update();
+
     }
 
 }

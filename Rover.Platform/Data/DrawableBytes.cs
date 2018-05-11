@@ -83,6 +83,10 @@ namespace Rover.Platform.Data {
             }
         }
 
+        public void SetPixelIfContains(int x, int y, Color color) {
+            if (Contains(x, y)) SetPixel(x, y, color);
+        }
+
         public void SetPixel(int x, int y, Color color) => SetPixel(x, y, color.B, color.G, color.R, color.A);
 
         public void SetPixel(int x, int y, byte b, byte g = 0, byte r = 0, byte a = 255) => SetPixel(GetIndex(x, y), b, g, r, a);
@@ -143,7 +147,7 @@ namespace Rover.Platform.Data {
             }
         }
 
-        public bool Contains(int x, int y) => 0 <= x && x <= Width && 0 <= y && y < Height;
+        public bool Contains(int x, int y) => 0 <= x && x < Width && 0 <= y && y < Height;
 
         private int GetIndex(int x, int y) {
             var index = (y * Width + x) * ColorComponentsCount;

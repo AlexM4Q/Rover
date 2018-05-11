@@ -16,14 +16,13 @@ namespace Rover.Ui {
         private void OnLoaded(object sender, RoutedEventArgs e) {
             var hero = new Hero();
 
-            var heroService = new HeroService();
+            var heroService = new MoverService();
             var drawerService = new DrawerService((int) Width, (int) Height);
-            var contrllerService = new KeyboardControllerService {Moveable = hero};
+            var contrllerService = new KeyboardControllerService {Controllable = hero};
 
-            var world = new World {
-                OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource())
-            };
+            var world = World.Instance;
 
+            world.OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource());
             world.Services.Add(heroService);
             world.Services.Add(drawerService);
             world.Services.Add(contrllerService);
