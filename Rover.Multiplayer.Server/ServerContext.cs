@@ -17,11 +17,11 @@ namespace Rover.Multiplayer.Server {
 
         public readonly RoverServer Server;
 
-        public ServerContext() {
+        private ServerContext() {
             World = World.Instance;
             World.OnUpdate = Update;
-            World.Services.Add(new MoverService());
-            World.Services.Add(new DrawerService(500, 500));
+            World.AddService(new MoverService());
+            World.AddService(new DrawerService(500, 500));
 
             Server = new RoverServer(12321);
         }
@@ -36,12 +36,12 @@ namespace Rover.Multiplayer.Server {
         }
 
         public void Dispose() {
-            Server.Stop();
-            World.Stop();
+            Server.Dispose();
+            World.Dispose();
         }
 
         public void OnRegisterHeroMessage(RegisterHeroMessage message) {
-            World.Entities.Add(new Hero(message.EntityId) {
+            World.AddEntity(new Hero(message.EntityId) {
                 Velocity = message.Velocity
             });
         }
@@ -50,6 +50,14 @@ namespace Rover.Multiplayer.Server {
             var entity = World.Entities.FirstOrDefault(e => e.Id == message.EntityId);
             if (entity is Hero hero) {
                 hero.Direction = message.Direction;
+            }
+        }
+
+        public void OnFireMessage(FireMessage message) {
+            var entity = World.Entities.FirstOrDefault(e => e.Id == message.EntityId);
+            if (entity is Hero hero) {
+                hero.FireType = message.FireType;
+                hero.IsFire = message.IsFire;
             }
         }
 

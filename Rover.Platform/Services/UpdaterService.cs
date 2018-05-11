@@ -8,7 +8,9 @@ namespace Rover.Platform.Services {
 
         public void Update(IEnumerable<IEntity> entities) {
             foreach (var entity in entities) {
-                entity.Update();
+                if (entity is IUpdatable updatable) {
+                    updatable.Update();
+                }
             }
         }
 

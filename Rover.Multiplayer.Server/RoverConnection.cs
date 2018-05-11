@@ -21,6 +21,9 @@ namespace Rover.Multiplayer.Server {
                 case MoveMessage moveMessage:
                     ServerContext.Instance.OnMoveMessage(moveMessage);
                     break;
+                case FireMessage fireMessage:
+                    ServerContext.Instance.OnFireMessage(fireMessage);
+                    break;
             }
         }
 

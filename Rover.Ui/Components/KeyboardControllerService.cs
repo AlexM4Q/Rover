@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using Rover.Platform.Entities.Base;
-using Rover.Platform.Services;
 using Rover.Platform.Services.Base;
 using Vector = Rover.Platform.Data.Vector;
 
@@ -14,7 +13,9 @@ namespace Rover.Ui.Components {
 
         private Vector _previous;
 
-        public void Update(IEnumerable<IEntity> entities) {
+        public void Update(IEnumerable<IEntity> entities = null) {
+            if (Controllable == null) return;
+
             Application.Current.Dispatcher.Invoke(() => {
                 if (Controllable == null) return;
 
@@ -35,9 +36,7 @@ namespace Rover.Ui.Components {
                     Controllable.Direction = _previous = direction;
                 }
 
-                if (Keyboard.IsKeyDown(Key.Space)) {
-                    Controllable.Fire();
-                }
+                Controllable.IsFire = Keyboard.IsKeyDown(Key.Space);
             });
         }
 

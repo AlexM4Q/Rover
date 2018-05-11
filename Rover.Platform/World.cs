@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,32 +8,39 @@ using Rover.Platform.Services.Base;
 
 namespace Rover.Platform {
 
-    public class World {
+    public class World : IDisposable {
 
         private static World _instance;
 
         public static World Instance => _instance ?? (_instance = new World());
 
-        public readonly List<IService> Services;
+        private readonly ConcurrentBag<IService> _services;
 
-        public readonly List<IEntity> Entities;
+        public IReadOnlyCollection<IService> Services => _services;
+
+        private readonly ConcurrentBag<IEntity> _entities;
+
+        public IReadOnlyCollection<IEntity> Entities => _entities;
+
+        private readonly Thread _process;
 
         public Action OnUpdate { get; set; }
 
         public int UpdateDelay { get; set; } = 10;
 
-        private readonly Thread _process;
-
         private Status _status;
 
         private World() {
-            Services = new List<IService>();
-            Entities = new List<IEntity>();
+            _services = new ConcurrentBag<IService>();
+            _entities = new ConcurrentBag<IEntity>();
 
             _status = Status.Stopped;
             _process = new Thread(() => {
                 while (_status == Status.Working) {
-                    Services.ForEach(e => e.Update(Entities));
+                    foreach (var service in _services) {
+                        service.Update(Entities);
+                    }
+
                     OnUpdate?.Invoke();
 
                     Thread.Sleep(UpdateDelay);
@@ -45,11 +53,19 @@ namespace Rover.Platform {
             _process.Start();
         }
 
-        public void Stop() {
+        public void Dispose() {
             _status = Status.Stopped;
         }
 
-        public T GetService<T>() where T : IService => (T) Services.FirstOrDefault(s => s is T);
+        public T GetService<T>() where T : IService => (T) _services.FirstOrDefault(s => s is T);
+
+        public void AddEntity(IEntity entity) {
+            _entities.Add(entity);
+        }
+
+        public void AddService(IService service) {
+            _services.Add(service);
+        }
 
         private enum Status {
 

@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Rover.Platform.Data;
 using Rover.Platform.Entities.Base;
 
 namespace Rover.Platform.Entities {
 
-    public class Bullet : MoveableEntity, IDrawable {
+    [Serializable]
+    public class Bullet : Shell, IDrawable {
 
         public Bullet(Vector direction) {
             Direction = direction;

@@ -7,12 +7,13 @@ namespace Rover.Platform.Entities {
     /// <summary>
     /// Базовый класс сущности
     /// </summary>
+    [Serializable]
     public abstract class Entity : IEntity {
 
         /// <summary>
         /// Мир во всём
         /// </summary>
-        protected World World => World.Instance;
+        protected static World World => World.Instance;
 
         /// <summary>
         /// Идентификатор
@@ -29,6 +30,9 @@ namespace Rover.Platform.Entities {
         /// </summary>
         public Vector Position { get; set; }
 
+        protected Entity() : this(Guid.NewGuid()) {
+        }
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -38,8 +42,6 @@ namespace Rover.Platform.Entities {
             Size = new Vector(1, 1);
             Position = new Vector();
         }
-
-        public abstract void Update();
 
     }
 

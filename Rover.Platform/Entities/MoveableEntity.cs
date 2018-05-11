@@ -7,7 +7,8 @@ namespace Rover.Platform.Entities {
     /// <summary>
     /// Базовый класс подвижной сущности
     /// </summary>
-    public abstract class MoveableEntity : Entity, IMoveable {
+    [Serializable]
+    public abstract class MoveableEntity : Entity, IMoveable, IUpdatable {
 
         /// <summary>
         /// Скорость
@@ -50,9 +51,7 @@ namespace Rover.Platform.Entities {
             Angular = new Vector(1, 0);
         }
 
-        public override void Update() {
-            Position += Velocity * Direction;
-        }
+        public virtual void Update() => Position += Velocity * Direction;
 
     }
 

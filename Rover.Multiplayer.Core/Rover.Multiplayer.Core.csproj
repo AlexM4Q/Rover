@@ -47,6 +47,8 @@
     <Compile Include="Connection\RemoteConnection.cs" />
     <Compile Include="Connection\Status.cs" />
     <Compile Include="Connection\TcpConnection.cs" />
+    <Compile Include="Models\Messages\AdressedMessage.cs" />
+    <Compile Include="Models\Messages\FireMessage.cs" />
     <Compile Include="Models\Messages\MapMessage.cs" />
     <Compile Include="Models\Messages\MessageBase.cs" />
     <Compile Include="Models\Messages\MoveMessage.cs" />

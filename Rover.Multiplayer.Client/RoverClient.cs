@@ -3,9 +3,9 @@ using System.Net.Sockets;
 using System.Threading;
 using Rover.Multiplayer.Core.Connection;
 using Rover.Multiplayer.Core.Models.Messages;
+using Rover.Platform.Adapters;
 using Rover.Platform.Data;
 using Rover.Platform.Entities;
-using Rover.Platform.Services;
 using Rover.Platform.Services.Base;
 
 namespace Rover.Multiplayer.Client {
@@ -13,7 +13,7 @@ namespace Rover.Multiplayer.Client {
     /// <summary>
     /// Клиент
     /// </summary>
-    public sealed class RoverClient : ClientConnection {
+    public sealed class RoverClient : ClientConnection, IHeroAdaptable {
 
         /// <summary>
         /// Идентификатор
@@ -59,6 +59,14 @@ namespace Rover.Multiplayer.Client {
             });
         }
 
+        protected override void OnTcpMessageReceived(MessageBase message) {
+            switch (message) {
+                case MapMessage mapMessage:
+                    OnMapMessage?.Invoke(mapMessage);
+                    break;
+            }
+        }
+
         public void Move(Vector direction) {
             SendViaTcp(new MoveMessage {
                 EntityId = _hero.Id,
@@ -66,12 +74,12 @@ namespace Rover.Multiplayer.Client {
             });
         }
 
-        protected override void OnTcpMessageReceived(MessageBase message) {
-            switch (message) {
-                case MapMessage mapMessage:
-                    OnMapMessage?.Invoke(mapMessage);
-                    break;
-            }
+        public void Fire(bool isFire) {
+            SendViaTcp(new FireMessage {
+                EntityId = _hero.Id,
+                FireType = _hero.FireType,
+                IsFire = isFire
+            });
         }
 
     }

@@ -3,7 +3,9 @@
 namespace Rover.Multiplayer.Core.Models.Messages {
 
     [Serializable]
-    public class RegisterEntityMessage : AdressedMessage {
+    public class AdressedMessage : MessageBase {
+
+        public Guid EntityId { get; set; }
 
     }
 

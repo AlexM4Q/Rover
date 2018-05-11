@@ -5,7 +5,7 @@ using System.Net.Sockets;
 
 namespace Rover.Multiplayer.Server {
 
-    public class RoverServer {
+    public class RoverServer : IDisposable {
 
         private readonly IList<RoverConnection> _connections;
 
@@ -36,7 +36,7 @@ namespace Rover.Multiplayer.Server {
             WaitForConnection();
         }
 
-        public void Stop() {
+        public void Dispose() {
             if (!_isStarted) return;
 
             _tcpListener.Stop();

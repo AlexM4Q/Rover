@@ -1,11 +1,26 @@
 ﻿using System;
 using System.Drawing;
+using Rover.Platform.Constants;
 using Rover.Platform.Data;
 using Rover.Platform.Entities.Base;
 
 namespace Rover.Platform.Entities {
 
+    [Serializable]
     public class Hero : MoveableEntity, IDrawable, IControllable {
+
+        public FireType FireType { get; set; } = FireType.Bullet;
+
+        public bool IsFire { get; set; }
+
+        private long _fireDelayTicks;
+
+        public long FireDelaySeconds {
+            get => _fireDelayTicks / TimeSpan.TicksPerSecond;
+            set => _fireDelayTicks = value * TimeSpan.TicksPerSecond;
+        }
+
+        private long _lastFireTicks;
 
         /// <summary>
         /// Конструктор
@@ -18,8 +33,8 @@ namespace Rover.Platform.Entities {
         /// </summary>
         /// <param name="id">Идентификатор</param>
         public Hero(Guid id) : base(id) {
-            Velocity = new Vector(10, 10);
             Size = new Vector(15, 15);
+            Velocity = new Vector(10, 10);
         }
 
         public void Draw(DrawableBytes drawableBytes) {
@@ -30,8 +45,16 @@ namespace Rover.Platform.Entities {
             }
         }
 
-        public void Fire() {
-            World.Entities.Add(new Bullet(Angular) {Position = Position});
+        public override void Update() {
+            base.Update();
+
+            if (IsFire) {
+                var now = DateTime.Now.Ticks;
+                if (now - _lastFireTicks > _fireDelayTicks) {
+                    _lastFireTicks = now;
+                    World.AddEntity(new Bullet(Angular) {Position = Position});
+                }
+            }
         }
 
     }

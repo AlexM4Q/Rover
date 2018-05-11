@@ -2,7 +2,7 @@
 
     public interface IControllable : IMoveable {
 
-        void Fire();
+        bool IsFire { get; set; }
 
     }
 
