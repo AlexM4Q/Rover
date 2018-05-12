@@ -8,8 +8,10 @@ namespace Rover.Platform.Entities {
     [Serializable]
     public class Bullet : Shell, IDrawable {
 
-        public Bullet(Vector direction) {
-            Direction = direction;
+        public Color Color { get; set; }
+
+        public Bullet() {
+            Color = Color.Blue;
             Size = new Vector(5, 5);
             Velocity = new Vector(20, 20);
         }
@@ -17,7 +19,7 @@ namespace Rover.Platform.Entities {
         public void Draw(DrawableBytes drawableBytes) {
             for (var x = (int) Position.X; x < (int) Position.X + (int) Size.X; x++) {
                 for (var y = (int) Position.Y; y < (int) Position.Y + (int) Size.Y; y++) {
-                    drawableBytes.SetPixelIfContains(x, y, Color.Blue);
+                    drawableBytes.SetPixelIfContains(x, y, Color);
                 }
             }
         }

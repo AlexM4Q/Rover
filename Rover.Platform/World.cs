@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Rover.Platform.Entities;
 using Rover.Platform.Entities.Base;
 using Rover.Platform.Services.Base;
 
@@ -14,13 +14,13 @@ namespace Rover.Platform {
 
         public static World Instance => _instance ?? (_instance = new World());
 
-        private readonly ConcurrentBag<IService> _services;
+        private readonly SynchronizedCollection<IService> _services;
 
-        public IReadOnlyCollection<IService> Services => _services;
+        public IEnumerable<IService> Services => _services;
 
-        private readonly ConcurrentBag<IEntity> _entities;
+        private readonly SynchronizedCollection<IEntity> _entities;
 
-        public IReadOnlyCollection<IEntity> Entities => _entities;
+        public IEnumerable<IEntity> Entities => _entities;
 
         private readonly Thread _process;
 
@@ -31,14 +31,16 @@ namespace Rover.Platform {
         private Status _status;
 
         private World() {
-            _services = new ConcurrentBag<IService>();
-            _entities = new ConcurrentBag<IEntity>();
+            _services = new SynchronizedCollection<IService>();
+            _entities = new SynchronizedCollection<IEntity>();
 
             _status = Status.Stopped;
             _process = new Thread(() => {
                 while (_status == Status.Working) {
+                    var entities = new List<IEntity>(_entities);
+
                     foreach (var service in _services) {
-                        service.Update(Entities);
+                        service.Update(entities);
                     }
 
                     OnUpdate?.Invoke();
@@ -61,6 +63,10 @@ namespace Rover.Platform {
 
         public void AddEntity(IEntity entity) {
             _entities.Add(entity);
+        }
+
+        public void RemoveEntity(IEntity entity) {
+            _entities.Remove(entity);
         }
 
         public void AddService(IService service) {

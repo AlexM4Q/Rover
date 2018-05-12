@@ -36,12 +36,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\IHeroAdaptable.cs" />
     <Compile Include="Adapters\HeroAdapter.cs" />
-    <Compile Include="Constants\FireType.cs" />
+    <Compile Include="Constants\ShellType.cs" />
     <Compile Include="Data\DrawableBytes.cs" />
     <Compile Include="Data\Vector.cs" />
     <Compile Include="Entities\Base\IControllable.cs" />
@@ -50,14 +51,17 @@
     <Compile Include="Entities\Base\IMoveable.cs" />
     <Compile Include="Entities\Base\IUpdatable.cs" />
     <Compile Include="Entities\Bullet.cs" />
+    <Compile Include="Entities\BulletBomb.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Hero.cs" />
     <Compile Include="Entities\MoveableEntity.cs" />
     <Compile Include="Entities\Shell.cs" />
+    <Compile Include="Factories\ShellFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Base\IControllerService.cs" />
     <Compile Include="Services\Base\IService.cs" />
     <Compile Include="Services\DrawerService.cs" />
+    <Compile Include="Services\RemoverService.cs" />
     <Compile Include="Services\UpdaterService.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>

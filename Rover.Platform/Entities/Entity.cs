@@ -43,6 +43,14 @@ namespace Rover.Platform.Entities {
             Position = new Vector();
         }
 
+        public void Destroy() {
+            World.RemoveEntity(this);
+        }
+
+        public override bool Equals(object obj) => obj is IEntity entity && Id.Equals(entity.Id);
+
+        public override int GetHashCode() => Id.GetHashCode();
+
     }
 
 }

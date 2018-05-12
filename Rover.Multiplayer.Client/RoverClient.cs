@@ -77,7 +77,7 @@ namespace Rover.Multiplayer.Client {
         public void Fire(bool isFire) {
             SendViaTcp(new FireMessage {
                 EntityId = _hero.Id,
-                FireType = _hero.FireType,
+                ShellType = _hero.ShellType,
                 IsFire = isFire
             });
         }

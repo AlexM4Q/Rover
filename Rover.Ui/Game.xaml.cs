@@ -16,26 +16,28 @@ namespace Rover.Ui {
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e) {
-//            var hero = new Hero();
-//
-//            var heroService = new MoverService();
-//            var drawerService = new DrawerService((int) Width, (int) Height);
-//            var contrllerService = new KeyboardControllerService {Controllable = hero};
-//
-//            var world = World.Instance;
-//
-//            world.OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource());
-//            world.Services.Add(heroService);
-//            world.Services.Add(drawerService);
-//            world.Services.Add(contrllerService);
-//            world.Entities.Add(hero);
-//            world.Start();
+            var hero = new Hero();
 
-            var client = new RoverClient("localhost", 12321) {
-                OnMapMessage = message => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = message.DrawableBytes.ToBitmapSource())
-            };
+            var heroService = new UpdaterService();
+            var removerService = new RemoverService();
+            var drawerService = new DrawerService((int) Width, (int) Height);
+            var contrllerService = new KeyboardControllerService {Controllable = hero};
 
-            client.ControllerService = new KeyboardControllerService {Controllable = new HeroAdapter(client)};
+            var world = World.Instance;
+
+            world.OnUpdate = () => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = drawerService.DrawableBytes.ToBitmapSource());
+            world.AddService(heroService);
+            world.AddService(removerService);
+            world.AddService(drawerService);
+            world.AddService(contrllerService);
+            world.AddEntity(hero);
+            world.Start();
+
+//            var client = new RoverClient("localhost", 12321) {
+//                OnMapMessage = message => Application.Current.Dispatcher.Invoke(() => MainScreen.Source = message.DrawableBytes.ToBitmapSource())
+//            };
+//
+//            client.ControllerService = new KeyboardControllerService {Controllable = new HeroAdapter(client)};
         }
 
     }

@@ -4,7 +4,7 @@ using Rover.Platform.Services.Base;
 
 namespace Rover.Platform.Services {
 
-    public class MoverService : IService {
+    public class UpdaterService : IService {
 
         public void Update(IEnumerable<IEntity> entities) {
             foreach (var entity in entities) {

@@ -3,9 +3,10 @@
 namespace Rover.Platform.Constants {
 
     [Serializable]
-    public enum FireType {
+    public enum ShellType {
 
-        Bullet
+        Bullet,
+        BulletBomb
 
     }
 

@@ -1,4 +1,5 @@
-﻿using Rover.Platform.Data;
+﻿using System.Drawing;
+using Rover.Platform.Data;
 
 namespace Rover.Platform.Entities.Base {
 
@@ -6,6 +7,11 @@ namespace Rover.Platform.Entities.Base {
     /// Базовый интерфейс чего-то рисовабельного
     /// </summary>
     public interface IDrawable {
+
+        /// <summary>
+        /// Цвет
+        /// </summary>
+        Color Color { get; set; }
 
         /// <summary>
         /// Отрисовка

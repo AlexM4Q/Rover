@@ -3,22 +3,20 @@ using System.Drawing;
 using Rover.Platform.Constants;
 using Rover.Platform.Data;
 using Rover.Platform.Entities.Base;
+using Rover.Platform.Factories;
 
 namespace Rover.Platform.Entities {
 
     [Serializable]
     public class Hero : MoveableEntity, IDrawable, IControllable {
 
-        public FireType FireType { get; set; } = FireType.Bullet;
+        public Color Color { get; set; }
 
         public bool IsFire { get; set; }
 
-        private long _fireDelayTicks;
+        public ShellType ShellType { get; set; } = ShellType.BulletBomb;
 
-        public long FireDelaySeconds {
-            get => _fireDelayTicks / TimeSpan.TicksPerSecond;
-            set => _fireDelayTicks = value * TimeSpan.TicksPerSecond;
-        }
+        public long FireDelayTicks { get; set; } = 1000000L;
 
         private long _lastFireTicks;
 
@@ -33,6 +31,7 @@ namespace Rover.Platform.Entities {
         /// </summary>
         /// <param name="id">Идентификатор</param>
         public Hero(Guid id) : base(id) {
+            Color = Color.Red;
             Size = new Vector(15, 15);
             Velocity = new Vector(10, 10);
         }
@@ -40,7 +39,7 @@ namespace Rover.Platform.Entities {
         public void Draw(DrawableBytes drawableBytes) {
             for (var x = (int) Position.X; x < (int) Position.X + (int) Size.X; x++) {
                 for (var y = (int) Position.Y; y < (int) Position.Y + (int) Size.Y; y++) {
-                    drawableBytes.SetPixelIfContains(x, y, Color.Red);
+                    drawableBytes.SetPixelIfContains(x, y, Color);
                 }
             }
         }
@@ -50,9 +49,9 @@ namespace Rover.Platform.Entities {
 
             if (IsFire) {
                 var now = DateTime.Now.Ticks;
-                if (now - _lastFireTicks > _fireDelayTicks) {
+                if (now - _lastFireTicks > FireDelayTicks) {
                     _lastFireTicks = now;
-                    World.AddEntity(new Bullet(Angular) {Position = Position});
+                    World.AddEntity(ShellType.CreateShell(Position, Angular));
                 }
             }
         }

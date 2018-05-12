@@ -11,8 +11,6 @@ namespace Rover.Ui.Components {
 
         public IControllable Controllable { get; set; }
 
-        private Vector _previous;
-
         public void Update(IEnumerable<IEntity> entities = null) {
             if (Controllable == null) return;
 
@@ -32,10 +30,7 @@ namespace Rover.Ui.Components {
                     direction.Y = 1;
                 }
 
-                if (!direction.Equals(_previous)) {
-                    Controllable.Direction = _previous = direction;
-                }
-
+                Controllable.Direction = direction;
                 Controllable.IsFire = Keyboard.IsKeyDown(Key.Space);
             });
         }

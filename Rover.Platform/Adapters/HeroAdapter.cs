@@ -1,15 +1,20 @@
 ﻿using System;
 using Rover.Platform.Data;
-using Rover.Platform.Entities;
 using Rover.Platform.Entities.Base;
 
 namespace Rover.Platform.Adapters {
 
     public class HeroAdapter : IControllable {
 
+        private Vector _direction;
+
         public Vector Direction {
-            get => throw new NotImplementedException();
-            set => _heroAdaptable?.Move(value);
+            get => _direction;
+            set {
+                if (_direction.Equals(value)) return;
+                _direction = value;
+                _heroAdaptable?.Move(value);
+            }
         }
 
         private bool _isFire;
@@ -21,30 +26,24 @@ namespace Rover.Platform.Adapters {
                 _isFire = value;
                 if (value) {
                     var now = DateTime.Now.Ticks;
-                    if (now - _lastFireTicks <= _fireDelayTicks) return;
+                    if (now - _lastFireTicks < FireDelayTicks) return;
 
                     _lastFireTicks = now;
-                    _heroAdaptable.Fire(true);
+                    _heroAdaptable?.Fire(true);
                 } else {
-                    _heroAdaptable.Fire(false);
+                    _heroAdaptable?.Fire(false);
                 }
             }
         }
 
-        private long _fireDelayTicks;
+        private readonly IHeroAdaptable _heroAdaptable;
 
-        public long FireDelayMilliSeconds {
-            get => _fireDelayTicks / TimeSpan.TicksPerMillisecond;
-            set => _fireDelayTicks = value * TimeSpan.TicksPerMillisecond;
-        }
+        public long FireDelayTicks { get; set; } = 10000000L;
 
         private long _lastFireTicks;
 
-        private readonly IHeroAdaptable _heroAdaptable;
-
         public HeroAdapter(IHeroAdaptable heroAdaptable) {
             _heroAdaptable = heroAdaptable;
-            FireDelayMilliSeconds = 100;
         }
 
     }

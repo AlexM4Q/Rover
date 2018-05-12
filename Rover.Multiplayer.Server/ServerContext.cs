@@ -20,7 +20,7 @@ namespace Rover.Multiplayer.Server {
         private ServerContext() {
             World = World.Instance;
             World.OnUpdate = Update;
-            World.AddService(new MoverService());
+            World.AddService(new UpdaterService());
             World.AddService(new DrawerService(500, 500));
 
             Server = new RoverServer(12321);
@@ -56,7 +56,7 @@ namespace Rover.Multiplayer.Server {
         public void OnFireMessage(FireMessage message) {
             var entity = World.Entities.FirstOrDefault(e => e.Id == message.EntityId);
             if (entity is Hero hero) {
-                hero.FireType = message.FireType;
+                hero.ShellType = message.ShellType;
                 hero.IsFire = message.IsFire;
             }
         }
